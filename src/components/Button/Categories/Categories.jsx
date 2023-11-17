@@ -5,8 +5,7 @@ import { categories } from "./categoriesData";
 
 const Categories = () => {
   const [params, setParams] = useSearchParams();
-  const categorie = params.get("category");
-  console.log(categorie);
+  const category = params.get("category");
   return (
     <Container>
       <div className="pt-4 flex items-center justify-center overflow-x-auto">
@@ -15,7 +14,7 @@ const Categories = () => {
             key={item.label}
             icon={item.icon}
             label={item.label}
-            selected={categorie === item.label}
+            selected={category === item.label}
           ></CategoriesBox>
         ))}
       </div>
