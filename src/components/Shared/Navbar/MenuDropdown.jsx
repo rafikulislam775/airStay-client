@@ -6,8 +6,12 @@ import avatarImg from '../../../assets/images/placeholder.jpg'
 
 const MenuDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { user } = useAuth()
-
+  const { user, logOut } = useAuth();
+  const handleLogout = () => {
+    logOut()
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3'>
@@ -45,7 +49,9 @@ const MenuDropdown = () => {
             >
               Home
             </Link>
-
+          
+            <button onClick={handleLogout} >logOut</button>
+          
             <Link
               to='/login'
               className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
