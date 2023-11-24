@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoImg from "../../../../public/air_stay-logo.png";
+import logoImg from "../../../public/air_stay-logo.png";
 
 const Logo = () => {
   return (

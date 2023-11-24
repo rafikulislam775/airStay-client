@@ -1,6 +1,6 @@
 
 import { Helmet } from "react-helmet";
-import Categories from "../../components/Button/Categories/Categories";
+import Categories from "../../components/Categories/Categories";
 import Rooms from "../../components/Rooms/Rooms";
 
 const Home = () => {
