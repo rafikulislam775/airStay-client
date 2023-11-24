@@ -1,34 +1,36 @@
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Container from "../../components/Shared/Container";
-import Loader from "../../components/Shared/Loader";
-import { useEffect, useState } from "react";
+// import Loader from "../../components/Shared/Loader";
+// import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import Header from "../../components/RoomDetails/Header";
 import RoomInfo from "../../components/RoomDetails/RoomInfo";
 import RoomReservation from "../../components/RoomDetails/RoomReservation";
+import { useLoaderData } from "react-router-dom";
 
 const RoomDetails = () => {
-  const { id } = useParams();
-  const [room, setRoom] = useState({});
+  // const { id } = useParams();
+  // const [room, setRoom] = useState({});
 
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch(
-      "https://raw.githubusercontent.com/shakilahmedatik/stay-vista-part1/main/client/public/rooms.json"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        const singleRoom = data?.find((room) => room._id === id);
-        setRoom(singleRoom);
-        setLoading(false);
-      });
-  }, [id]);
-  // console.log(rooms);
-  if (loading) {
-    return <Loader></Loader>;
-  }
+  // useEffect(() => {
+  //   setLoading(true);
+  //   fetch(
+  //     "https://raw.githubusercontent.com/shakilahmedatik/stay-vista-part1/main/client/public/rooms.json"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const singleRoom = data?.find((room) => room._id === id);
+  //       setRoom(singleRoom);
+  //       setLoading(false);
+  //     });
+  // }, [id]);
+  // // console.log(rooms);
+  // if (loading) {
+  //   return <Loader></Loader>;
+  // }
+  const room = useLoaderData();
   return (
     <Container>
       <Helmet>
