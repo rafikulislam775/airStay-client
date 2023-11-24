@@ -2,9 +2,10 @@ import axios from 'axios'
 import { clearCookie } from './auth'
 
 const axiosSecure = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  // baseURL: import.meta.env.VITE_API_URL,
+  baseURL: "http://localhost:8000",
   withCredentials: true,
-})
+});
 
 // intercept response and check for unauthorized responses.
 axiosSecure.interceptors.response.use(

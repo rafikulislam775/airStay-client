@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../api/utils";
 import { TbFidgetSpinner } from "react-icons/tb";
+import { getToken, saveUser } from "../../api/auth";
 
 const SignUp = () => {
   const { createUser, updateUserProfile, signInWithGoogle, loading } =
@@ -30,14 +31,14 @@ const SignUp = () => {
       console.log(result);
 
       //4. save user data in database
-      // const dbResponse = await saveUser(result?.user);
-      // console.log(dbResponse);
-      // result.user.email
+      const dbResponse = await saveUser(result?.user);
+      console.log(dbResponse);
+      result.user.email;
 
       //5. get token
-      // await getToken(result?.user?.email);
-      // navigate("/");
-      // toast.success("Signup Successful");
+      await getToken(result?.user?.email);
+      navigate("/");
+      toast.success("Signup Successful");
     } catch (err) {
       console.log(err);
       toast.error(err?.message);
