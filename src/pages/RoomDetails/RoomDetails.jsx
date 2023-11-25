@@ -1,12 +1,13 @@
 // import { useParams } from "react-router-dom";
 import Container from "../../components/Shared/Container";
 // import Loader from "../../components/Shared/Loader";
-// import { useEffect, useState } from "react";
+
 import { Helmet } from "react-helmet";
 import Header from "../../components/RoomDetails/Header";
 import RoomInfo from "../../components/RoomDetails/RoomInfo";
 import RoomReservation from "../../components/RoomDetails/RoomReservation";
 import { useLoaderData } from "react-router-dom";
+// import { useState } from "react";
 
 const RoomDetails = () => {
   // const { id } = useParams();
@@ -26,7 +27,7 @@ const RoomDetails = () => {
   //       setLoading(false);
   //     });
   // }, [id]);
-  // // console.log(rooms);
+  // console.log(rooms);
   // if (loading) {
   //   return <Loader></Loader>;
   // }

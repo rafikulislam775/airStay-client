@@ -8,6 +8,15 @@ import RoomDetails from "../pages/RoomDetails/RoomDetails";
 import PrivateRoute from "./PrivateRoute";
 import { getAllRooms, getRoom } from "../api/rooms";
 import DashboardLayout from "../layouts/DashboardLayout";
+import Statistics from "../pages/Dashboard/Common/Statistics";
+import AddRoom from "../pages/Dashboard/Host/AddRoom";
+import MyListings from "../pages/Dashboard/Host/MyListings";
+import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import Profile from "../pages/Dashboard/Common/Profile";
+import MyBookings from "../pages/Dashboard/Guest/MyBookings";
+import ManageBookings from "../pages/Dashboard/Host/ManageBookings";
+import AdminRoute from "./AdminRoute";
+import HostRoute from "./HostRoute";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +46,74 @@ export const router = createBrowserRouter([
   // this is dashboard section
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Statistics />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "add-room",
+        element: (
+          <PrivateRoute>
+            <HostRoute>
+              <AddRoom />
+            </HostRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-listings",
+        element: (
+          <PrivateRoute>
+            <HostRoute>
+              <MyListings />
+            </HostRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-users",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "my-bookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "manage-bookings",
+        element: (
+          <HostRoute>
+            <ManageBookings />
+          </HostRoute>
+        ),
+      },
+    ],
   },
 ]);
