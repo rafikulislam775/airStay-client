@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import Button from "../Button/Button";
-// import Calender from "./Calender";
+import Calender from "./Calender";
 import { formatDistance } from "date-fns";
-// import BookingModal from "../Modal/BookingModal";
+import BookingModal from "../Modal/BookingModal";
 import useAuth from "../../hooks/useAuth";
 
 const RoomReservation = ({ room }) => {
@@ -13,13 +13,12 @@ const RoomReservation = ({ room }) => {
   const closeModal = () => {
     setIsOpen(false);
   };
-  // react date range use kora hoyese
   const [value, setValue] = useState({
     startDate: new Date(room?.from),
     endDate: new Date(room?.to),
     key: "selection",
   });
-  // //   Total days * price
+  //   Total days * price
   const totalDays = parseInt(
     formatDistance(new Date(room?.to), new Date(room?.from)).split(" ")[0]
   );
@@ -49,7 +48,7 @@ const RoomReservation = ({ room }) => {
     image: room?.image,
   });
 
-  // console.log(value);
+  console.log(value);
 
   return (
     <div className="rounded-xl border-[1px] border-neutral-200 overflow-hidden bg-white">
@@ -59,13 +58,13 @@ const RoomReservation = ({ room }) => {
       </div>
       <hr />
       <div className="flex justify-center">
-        {/* <Calender handleDateChange={handleDateChange} value={value} /> */}
+        <Calender handleDateChange={handleDateChange} value={value} />
       </div>
       <hr />
       <div className="p-4">
         <Button
           disabled={room.host.email === user.email || room.booked}
-          // onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen(true)}
           label={"Reserve"}
         />
       </div>
@@ -75,11 +74,11 @@ const RoomReservation = ({ room }) => {
         <div>$ {totalPrice}</div>
       </div>
 
-      {/* <BookingModal
+      <BookingModal
         closeModal={closeModal}
         isOpen={isOpen}
         bookingInfo={bookingInfo}
-      /> */}
+      />
     </div>
   );
 };
