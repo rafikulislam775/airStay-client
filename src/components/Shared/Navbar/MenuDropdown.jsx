@@ -4,36 +4,39 @@ import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 import toast from "react-hot-toast";
+import HostModal from "../../Modal/HostRequestModal";
+import useRole from "../../../hooks/useRole";
+import { becomeHost } from "../../../api/auth";
 
 const MenuDropdown = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  // const [role] = useRole();
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-  // const modalHandler = async () => {
-  //   try {
-  //     const data = await becomeHost(user?.email);
-  //     console.log(data);
-  //     if (data.modifiedCount > 0) {
-  //       toast.success("Success!, Please wait for admin confirmation.");
-  //     } else {
-  //       toast.success("Please!, Wait for admin approval👊");
-  //     }
-  //   } catch (err) {
-  //     console.log(err);
-  //   } finally {
-  //     setIsModalOpen(false);
-  //   }
-  // };
+  const [role] = useRole();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const modalHandler = async () => {
+    try {
+      const data = await becomeHost(user?.email);
+      console.log(data);
+      if (data.modifiedCount > 0) {
+        toast.success("Success!, Please wait for admin confirmation.");
+      } else {
+        toast.success("Please!, Wait for admin approval👊");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsModalOpen(false);
+    }
+  };
 
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         {/* Become A Host btn */}
-        {/* <div className="hidden md:block">
+        <div className="hidden md:block">
           {(!user || !role || role === "guest") && (
             <button
               onClick={() => setIsModalOpen(true)}
@@ -43,7 +46,7 @@ const MenuDropdown = () => {
               Host your home
             </button>
           )}
-        </div> */}
+        </div>
         {/* Dropdown btn */}
         <div
           onClick={() => setIsOpen(!isOpen)}
@@ -107,11 +110,11 @@ const MenuDropdown = () => {
           </div>
         </div>
       )}
-      {/* <HostModal
+      <HostModal
         isOpen={isModalOpen}
         closeModal={closeModal}
         modalHandler={modalHandler}
-      /> */}
+      />
     </div>
   );
 };
